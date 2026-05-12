@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">train_tickets_mobile</string>
+    <string name="auth">Авторизация</string>
+    <string name="password">Пароль</string>
+    <string name="username">Имя пользователя</string>
+    <string name="enter">Войти</string>
+    <string name="departure">Откуда</string>
+    <string name="destination">Куда</string>
+    <string name="date">Дата отправления</string>
+    <string name="find">Найти</string>
+    <string name="trips">Поезда</string>
+    <string name="available_seats">Доступные места:</string>
+    <string name="economy">Плацкарт</string>
+    <string name="standard">Купе</string>
+    <string name="business">Бизнес</string>
+    <string name="luxury">Люкс</string>
+    <string name="no_such_trips">Нет подходящих поездов</string>
+    <string name="carriage">Вагон</string>
+    <string name="seat">Место</string>
+    <string name="select_seat">Выберите место</string>
+    <string name="book_seat">Забронировать место</string>
+    <string name="buy_ticket">Оплата билета</string>
+    <string name="buy">Оплатить</string>
+    <string name="last_name">Фамилия</string>
+    <string name="first_name">Имя</string>
+    <string name="middle_name">Отчество</string>
+    <string name="ticket_paid">Билет оплачен</string>
+    <string name="on_main_screen">На главный экран</string>
+    <string name="retry">Попробовать снова</string>
+    <string name="error">Ошибка</string>
+    <string name="find_trip">Поиск поездов</string>
+</resources>
