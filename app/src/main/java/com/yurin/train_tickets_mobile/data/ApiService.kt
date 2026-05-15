@@ -23,6 +23,7 @@ interface ApiService {
     suspend fun getTrips(
         @Query("departure") departure: String? = null,
         @Query("destination") destination: String? = null,
+        @Query("departureDate") departureDate: String? = null
     ): List<TripResponse>
 
     @GET("/api/trips/{trip_id}/seats")

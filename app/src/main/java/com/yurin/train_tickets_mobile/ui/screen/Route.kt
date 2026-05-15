@@ -22,4 +22,7 @@ sealed interface Route: NavKey {
 
     @Serializable
     data object Success: Route
+
+    @Serializable
+    data object Settings: Route
 }

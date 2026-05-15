@@ -121,7 +121,8 @@ fun Screen(
                 if (selectedDeparture != null && selectedDestination != null) {
                     searchViewModel.getTrips(
                         screenState.departure[selectedDeparture!!],
-                        screenState.destination[selectedDestination!!]
+                        screenState.destination[selectedDestination!!],
+                        selectedDate
                     )
                 }
             },
@@ -149,10 +150,11 @@ fun Screen(
                 Error(
                     message = state.message,
                     onRetryClick = {
-                        if (selectedDeparture != null && selectedDestination != null) {
+                        if (selectedDeparture != null && selectedDestination != null && selectedDate != null) {
                             searchViewModel.getTrips(
                                 screenState.departure[selectedDeparture!!],
-                                screenState.destination[selectedDestination!!]
+                                screenState.destination[selectedDestination!!],
+                                selectedDate!!
                             )
                         }
                     }

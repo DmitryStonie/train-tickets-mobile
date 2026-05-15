@@ -29,4 +29,7 @@
     <string name="retry">Попробовать снова</string>
     <string name="error">Ошибка</string>
     <string name="find_trip">Поиск поездов</string>
+    <string name="ip">ip</string>
+    <string name="settings">Настройки</string>
+    <string name="save">Сохранить</string>
 </resources>

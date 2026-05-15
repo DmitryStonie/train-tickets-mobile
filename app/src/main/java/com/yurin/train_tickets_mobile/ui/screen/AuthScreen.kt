@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -15,6 +17,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -28,13 +31,17 @@ import com.yurin.train_tickets_mobile.ui.component.ErrorDialog
 import com.yurin.train_tickets_mobile.ui.component.Loading
 
 @Composable
-fun AuthScreen(authViewModel: AuthViewModel = hiltViewModel(), onLogged: () -> Unit) {
+fun AuthScreen(
+    authViewModel: AuthViewModel = hiltViewModel(),
+    onLogged: () -> Unit,
+    onSettingsClick: () -> Unit,
+) {
 
     val screenState by authViewModel.screenState.collectAsState()
 
     when (val state = screenState) {
         is AuthScreenState.Error -> {
-            Screen(state, authViewModel)
+            Screen(state, authViewModel, onSettingsClick)
         }
 
         AuthScreenState.Loading -> {
@@ -42,7 +49,7 @@ fun AuthScreen(authViewModel: AuthViewModel = hiltViewModel(), onLogged: () -> U
         }
 
         AuthScreenState.Initial -> {
-            Screen(state, authViewModel)
+            Screen(state, authViewModel, onSettingsClick)
         }
 
         AuthScreenState.Success -> {
@@ -52,7 +59,7 @@ fun AuthScreen(authViewModel: AuthViewModel = hiltViewModel(), onLogged: () -> U
 }
 
 @Composable
-fun Screen(state: AuthScreenState, authViewModel: AuthViewModel) {
+fun Screen(state: AuthScreenState, authViewModel: AuthViewModel, onSettingsClick: () -> Unit) {
 
     val showPassword by remember { mutableStateOf(false) }
     val username by authViewModel.username.collectAsState()
@@ -72,6 +79,15 @@ fun Screen(state: AuthScreenState, authViewModel: AuthViewModel) {
             .fillMaxWidth()
             .padding(start = 16.dp, end = 16.dp, top = 24.dp)
     ) {
+        IconButton(
+            onClick = onSettingsClick,
+            modifier = Modifier
+                .fillMaxWidth()
+                .align(Alignment.End)
+        ) {
+            Icon(painter = painterResource(R.drawable.settings_24dp), contentDescription = null)
+        }
+
         Spacer(modifier = Modifier.weight(1f))
 
         Text(
@@ -101,7 +117,7 @@ fun Screen(state: AuthScreenState, authViewModel: AuthViewModel) {
             label = {
                 Text(stringResource(R.string.password))
             },
-            visualTransformation =  if (showPassword) VisualTransformation.None else PasswordVisualTransformation(),
+            visualTransformation = if (showPassword) VisualTransformation.None else PasswordVisualTransformation(),
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(bottom = 24.dp)

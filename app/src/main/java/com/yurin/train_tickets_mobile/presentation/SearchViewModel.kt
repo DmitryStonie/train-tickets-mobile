@@ -45,7 +45,7 @@ class SearchViewModel @Inject constructor(
         }
     }
 
-    fun getTrips(departure: String, destination: String) {
+    fun getTrips(departure: String, destination: String, departureDate: Long?) {
         if (_screenState.value is SearchScreenState.Content) {
             _screenState.update { currentState ->
                 (currentState as SearchScreenState.Content).copy(
@@ -54,7 +54,7 @@ class SearchViewModel @Inject constructor(
             }
         }
         viewModelScope.launch(coroutineExceptionHandler2) {
-            val trips = getTripsUseCase(departure, destination)
+            val trips = getTripsUseCase(departure, destination, departureDate)
             if (_screenState.value is SearchScreenState.Content) {
                 _screenState.update { currentState ->
                     (currentState as SearchScreenState.Content).copy(

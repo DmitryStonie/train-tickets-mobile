@@ -4,6 +4,7 @@ import android.content.Context
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.yurin.train_tickets_mobile.data.ApiErrorInterceptor
 import com.yurin.train_tickets_mobile.data.AuthTokenInterceptor
+import com.yurin.train_tickets_mobile.data.HostSelectionInterceptor
 import com.yurin.train_tickets_mobile.data.NetworkErrorInterceptor
 import dagger.Module
 import dagger.Provides
@@ -55,7 +56,7 @@ object NetworkModule {
         @ApplicationContext context: Context,
     ): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("http://192.168.0.102:8000/")
+            .baseUrl("http://192.168.0.101:8000/")
             .addConverterFactory(factory)
             .client(getUnsafeOkHttpClient(context))
             .build()
@@ -111,6 +112,7 @@ object NetworkModule {
             builder.addInterceptor(ApiErrorInterceptor())
             builder.addInterceptor(NetworkErrorInterceptor())
             builder.addInterceptor(AuthTokenInterceptor(context))
+            builder.addInterceptor(HostSelectionInterceptor(context))
             builder.build()
         } catch (e: Exception) {
             throw RuntimeException(e)

@@ -18,4 +18,8 @@ class AuthRepository @Inject constructor(
     suspend fun checkUserLogin(): Boolean {
         return DataStoreManager.getStringValue(context) != null
     }
+
+    suspend fun setBaseUrl(url: String) {
+        DataStoreManager.setBaseUrl(context,url)
+    }
 }

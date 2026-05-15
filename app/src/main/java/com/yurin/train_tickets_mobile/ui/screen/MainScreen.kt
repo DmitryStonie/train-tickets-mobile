@@ -36,9 +36,13 @@ fun MainScreen(mainViewModel: MainViewModel = hiltViewModel()) {
             backStack = backStack,
             entryProvider = entryProvider {
                 entry<Route.Auth> {
-                    AuthScreen(onLogged = {
-                        backStack.clearAndAdd(Route.Search)
-                    })
+                    AuthScreen(
+                        onLogged = {
+                            backStack.clearAndAdd(Route.Search)
+                        },
+                        onSettingsClick = {
+                            backStack.add(Route.Settings)
+                        })
                 }
                 entry<Route.Search> {
                     SearchScreen(onTripClick = {
@@ -80,6 +84,13 @@ fun MainScreen(mainViewModel: MainViewModel = hiltViewModel()) {
                     SuccessScreen(onMainScreen = {
                         backStack.clearAndAdd(Route.Search)
                     })
+                }
+                entry<Route.Settings> {
+                    SettingsScreen(
+                        onBackClick = {
+                            backStack.removeAt(backStack.lastIndex)
+                        }
+                    )
                 }
                 entry<Route.Empty> {
 
